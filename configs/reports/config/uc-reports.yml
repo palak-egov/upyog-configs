@@ -771,6 +771,11 @@ ReportDefinitions:
         type: string
         source: uc
         total: false
+      - name: uuid
+        label: reports.uc.uuid
+        type: string
+        source: uc
+        showColumn: false
       - name: receiptdate
         label: reports.uc.receiptdate
         type: string
