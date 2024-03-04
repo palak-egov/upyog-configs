@@ -8201,8 +8201,8 @@
         "module": "PT",
         "dateRefField": "",
         "requestQueryMap": "{\"state\" : \"state.keyword\",\"ulb\" : \"ulb.keyword\"}",
-        "indexName": "pt-national-dashboard",
-        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"range\":{\"date\":{\"gte\":\"01-04-2022\",\"lte\":\"now-366d/d\"}}},\"aggs\":{\"TodaysCollection\":{\"sum\":{\"field\":\"todaysCollectionForUsageCategory\"}}}}}}"
+        "indexName": "pt-national-dashboard-agg-month",
+        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"range\":{\"month\":{\"gte\":\"1648771200000\",\"lte\":\"now-366d/d\"}}},\"aggs\":{\"TodaysCollection\":{\"sum\":{\"field\":\"todaysCollectionForUsageCategory\"}}}}}}"
       }
     ],
     "chartType": "metric",
@@ -8935,8 +8935,8 @@
         "requestQueryMap": "{\"state\" : \"state.keyword\",\"ulb\" : \"ulb.keyword\"}",
         "dateRefField": "month",
         "indexName": "pt-national-dashboard-agg-month",
-        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must\":[{\"exists\":{\"field\":\"usageCategory\"}},{\"exists\":{\"field\":\"todaysCollectionForUsageCategory\"}}],\"must_not\":[{\"match\":{\"todaysCollectionForUsageCategory\":0}}]}},\"aggs\":{\"Usage Type\":{\"terms\":{\"field\":\"usageCategory\",\"size\":1000},\"aggs\":{\"Amount Paid\":{\"sum\":{\"field\":\"todaysCollectionForUsageCategory\"}}}}}}}}"
-      }
+        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must\":[{\"exists\":{\"field\":\"usageCategory\"}},{\"exists\":{\"field\":\"todaysCollectionForUsageCategory\"}}],\"must_not\":[{\"match\":{\"todaysCollectionForUsageCategory\":0}}]}},\"aggs\":{\"Usage Type\":{\"terms\":{\"script\":{\"source\":\"doc['usageCategory'].value.toLowerCase()\",\"lang\":\"painless\"},\"size\":1000},\"aggs\":{\"Amount Paid\":{\"sum\":{\"field\":\"todaysCollectionForUsageCategory\"}}}}}}}}"
+         }
     ],
     "chartType": "pie",
     "valueType": "amount",
